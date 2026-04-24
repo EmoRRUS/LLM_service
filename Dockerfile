@@ -21,13 +21,16 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     ca-certificates \
+    pciutils \
     && rm -rf /var/lib/apt/lists/*
 
 # Make "python" point to python3
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# ── Install Ollama ───────────────────────────────────────────
-RUN curl -fsSL https://ollama.com/install.sh | sh
+# ── Install Ollama (Direct Binary) ───────────────────────────
+# Using direct binary download instead of the script to avoid build-time errors
+RUN curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama && \
+    chmod +x /usr/bin/ollama
 
 # ── Working directory ────────────────────────────────────────
 WORKDIR /app
