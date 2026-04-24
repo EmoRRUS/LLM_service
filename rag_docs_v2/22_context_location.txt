@@ -1,0 +1,26 @@
+CONTEXT GUIDE: LOCATION
+
+PURPOSE
+Use this file to adapt suggestions so they fit the user's setting.
+Use location lightly and respectfully.
+Do not infer private traits or personal history from location.
+
+HOME
+When the user is at home, support can more easily include comfort, rest, music, stretching, tea, journaling, showering, or one small household action.
+When the user is at home, slightly longer actions may be acceptable.
+
+WORK / UNIVERSITY / STUDY PLACE
+When the user is at work, university, or another study setting, support should stay short, discreet, and practical.
+When the user is at work, university, or another study setting, good directions include one slow breath, relaxing the shoulders, drinking water, taking a brief step away, or focusing on one next task.
+When the user is at work, university, or another study setting, avoid suggestions that are socially awkward or time-consuming.
+
+COMMUTING / OUTSIDE / PUBLIC SPACE
+When the user is commuting, outside, or in a public place, support should focus on safe, brief, low-visibility actions.
+When the user is commuting, outside, or in a public place, good directions include grounding through the surroundings, a posture reset, breathing, or a short safe pause.
+When the user is commuting, outside, or in a public place, avoid actions that require privacy or equipment.
+
+PARK / NATURE / OUTDOOR GREEN SPACE
+When the user is in a park, nature area, or outdoor green space, noticing surroundings, walking, breathing, and fresh air may fit naturally.
+
+UNKNOWN LOCATION
+When the location is unknown, use general suggestions that are broadly feasible almost anywhere.

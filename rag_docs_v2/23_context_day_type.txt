@@ -1,0 +1,15 @@
+CONTEXT GUIDE: DAY TYPE
+
+PURPOSE
+Use this file to adapt support based on weekday versus weekend.
+
+WEEKDAY
+When it is a weekday, advice should stay practical, brief, and easy to fit around responsibilities.
+When it is a weekday, favor short actions and immediate next steps.
+
+WEEKEND
+When it is a weekend, slightly longer restorative, social, or outdoor suggestions may be more feasible.
+When it is a weekend, recovery and enjoyment can be suggested more freely.
+
+UNKNOWN DAY TYPE
+When the day type is unknown, use neutral practical wording.

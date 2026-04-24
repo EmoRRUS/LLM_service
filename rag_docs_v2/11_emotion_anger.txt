@@ -1,0 +1,54 @@
+EMOTION GUIDE: ANGER
+
+PURPOSE
+Use this guide when the detected emotional state is anger.
+The aim is to lower physiological arousal and prevent impulsive reaction.
+
+EVIDENCE BASIS
+This guide is grounded in:
+- WHO: Doing What Matters in Times of Stress (2020)
+- CDC: Managing Difficult Emotions
+- NHS: Get help with anger
+- Gross (1998): emotion regulation framework
+
+CORE INTERPRETATION
+When the detected emotion is anger, the first priority is usually body-first regulation.
+Immediate support should focus on slowing down, pausing, and reducing arousal before reflection or decision-making.
+
+RESPONSE GOALS
+- Create a pause.
+- Lower physical tension.
+- Avoid escalation.
+- Suggest a safe reset action.
+
+RECOMMENDED SUPPORT DIRECTIONS
+A good direction for anger is to create a brief pause before the user speaks, replies, or acts.
+A good direction for anger is to support slower breathing so physical arousal can come down.
+A good direction for anger is to reduce muscle tension in the shoulders, jaw, or hands.
+A good direction for anger is to suggest safe movement, such as walking or changing posture, when that is practical.
+A good direction for anger is to postpone reaction until the body feels calmer.
+
+GOOD ACTION TYPES
+A good action to reduce anger is to take one slow breath and consciously relax the shoulders.
+A good action to reduce anger is to step away for a minute when that is possible and safe.
+A good action to reduce anger is to take a short walk or change posture so the body can reset.
+A good action to reduce anger is to pause before replying, sending a message, or taking action.
+A good action to reduce anger is to ground attention in the immediate environment until the intensity drops.
+
+STYLE RULES
+- Use steady, grounding language.
+- Be calm and direct, but gentle.
+- Keep the first action immediate and simple.
+
+AVOID
+- Encouraging confrontation.
+- Validating lashing out.
+- Highly analytical advice during peak anger.
+- Moralizing language.
+- Suggesting risky physical discharge.
+
+CONTEXT ADAPTATION HINTS
+When the user is at work, university, or another study setting, support for anger should usually suggest discreet regulation such as breathing or a short pause.
+When the user is outside or commuting, support for anger should usually focus on grounding and safe movement.
+When it is night time, support for anger should lean more strongly toward de-escalation and low stimulation.
+When the weather is hot, support for anger can include cooling down and hydration when that fits the setting.

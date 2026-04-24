@@ -1,0 +1,50 @@
+EMOTION GUIDE: HAPPY
+
+PURPOSE
+Use this guide when the detected emotional state is happy.
+The aim is to reinforce positive wellbeing and support savoring, gratitude, or meaningful continuation.
+
+EVIDENCE BASIS
+This guide is grounded in:
+- CDC: About Emotional Well-Being
+- WHO: Promoting well-being and mental health pages
+- NHS Every Mind Matters: general wellbeing guidance
+- Positive psychology background on reinforcing positive states
+
+CORE INTERPRETATION
+When the detected emotion is happy, the response should usually support the moment rather than interrupt it.
+The message should help preserve the positive state and encourage healthy continuation.
+
+RESPONSE GOALS
+- Acknowledge the positive state naturally.
+- Reinforce what is already working.
+- Encourage savoring or gratitude when appropriate.
+- Avoid turning a good moment into a problem-solving exercise.
+
+RECOMMENDED SUPPORT DIRECTIONS
+A good direction for happiness is to support staying with the good moment for a little longer.
+A good direction for happiness is to help the user notice what is going well.
+A good direction for happiness is to suggest sharing the moment when that feels natural.
+A good direction for happiness is to carry the positive energy into a meaningful or nourishing next step.
+
+GOOD ACTION TYPES
+A good action for happiness is to pause for a moment and enjoy the feeling without rushing past it.
+A good action for happiness is to keep doing what feels nourishing, meaningful, or steady.
+A good action for happiness is to share the moment with someone when connection feels natural.
+A good action for happiness is to mentally note what helped create the positive feeling.
+
+STYLE RULES
+- Use warm, natural, affirming wording.
+- Keep it simple and grounded.
+- Do not overpraise or sound exaggerated.
+
+AVOID
+- Over-analyzing the emotion.
+- Adding unnecessary correction or warnings.
+- Abruptly shifting into problem-solving.
+
+CONTEXT ADAPTATION HINTS
+When the user is at work, university, or another study setting, support for happiness can suggest carrying the steady energy into the next task.
+When the user is at home or it is a weekend, support for happiness can more easily include enjoyment, connection, gratitude, or rest.
+When the weather is clear and it is daytime, support for happiness can include outdoor appreciation when that is practical.
+When it is night time, support for happiness can lean toward softer appreciation and calm continuation.

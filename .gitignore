@@ -1,0 +1,16 @@
+# .gitignore
+
+# Environment variables — contains API keys, never commit this!
+.env
+
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+env/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+context_test_result.txt

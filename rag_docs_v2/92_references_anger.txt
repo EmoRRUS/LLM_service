@@ -1,0 +1,19 @@
+REFERENCES USED FOR ANGER GUIDE
+
+Primary references
+1. World Health Organization. Doing What Matters in Times of Stress: An Illustrated Guide. 2020.
+   Official page: https://www.who.int/publications-detail-redirect/9789240003927
+   Why used: supports grounding and practical self-regulation skills.
+
+2. NHS. Get help with anger.
+   https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/anger/
+   Why used: official public guidance for recognizing and managing anger.
+
+3. CDC. Managing Difficult Emotions.
+   https://www.cdc.gov/emotional-well-being/managing-difficult-emotions/index.html
+   Why used: supports healthy coping with difficult emotions and practical regulation steps.
+
+Foundational background
+4. Gross JJ. The emerging field of emotion regulation: an integrative review. Psychological Review. 1998;105(2):271-299.
+   DOI: https://doi.org/10.1037/0033-295X.105.2.271
+   Why used: supports body-first regulation, attention control, and response modulation.

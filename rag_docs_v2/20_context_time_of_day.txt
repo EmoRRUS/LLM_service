@@ -1,0 +1,25 @@
+CONTEXT GUIDE: TIME OF DAY
+
+PURPOSE
+Use this file to adapt emotional guidance based on time.
+Time should affect feasibility, energy level, and tone.
+
+MORNING
+When it is morning, support should usually favor gentle activation.
+When it is morning, good directions include starting small, setting one intention, getting daylight, or drinking water.
+When it is morning, avoid heavy emotional wording unless the emotion is clearly strong.
+
+MIDDAY / AFTERNOON
+When it is midday or afternoon, support should usually favor reset and refocus.
+When it is midday or afternoon, good directions include a short break, a stretch, water, or one clear next step.
+When it is midday or afternoon, practical wording usually works well.
+
+EVENING
+When it is evening, support should usually favor decompression.
+When it is evening, good directions include slowing down, softening stimulation, and taking a brief recovery action.
+When it is evening, avoid highly activating suggestions unless the context clearly calls for them.
+
+NIGHT
+When it is night time, support should usually favor calm, rest, comfort, and low stimulation.
+When it is night time, good directions include breathing, a quiet routine, gentle indoor actions, and preparing for sleep.
+When it is night time, avoid suggestions that require going out or creating extra stimulation unless they are clearly safe and practical.

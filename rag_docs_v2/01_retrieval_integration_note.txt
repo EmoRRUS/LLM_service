@@ -1,0 +1,18 @@
+RETRIEVAL INTEGRATION NOTE
+This file is not meant to be embedded for semantic retrieval.
+It is an implementation note for the RAG pipeline.
+
+IMPORTANT RULE
+The contents of 00_system_guardrails.txt should always be prepended to the final LLM prompt.
+Do not rely on vector similarity search to retrieve the guardrails file.
+
+RECOMMENDED FLOW
+1. Always load 00_system_guardrails.txt directly in code.
+2. Use vector retrieval only for emotion-specific and context-specific files.
+3. Retrieve the current emotion guide first.
+4. Retrieve the most relevant context guides for time, weather, location, and day type.
+5. Build the final prompt from guardrails + retrieved files + live user state.
+
+WHY THIS MATTERS
+A user query about sadness, anger, happiness, or context may not naturally retrieve the general guardrails file.
+Hardcoding the guardrails into the prompt keeps style, safety, and scope consistent on every response.

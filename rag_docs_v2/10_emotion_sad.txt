@@ -1,0 +1,57 @@
+EMOTION GUIDE: SAD
+
+PURPOSE
+Use this guide when the detected emotional state is sad.
+The aim is to reduce withdrawal, support gentle self-care, and encourage one small realistic action.
+
+EVIDENCE BASIS
+This guide is grounded in:
+- WHO: Doing What Matters in Times of Stress (2020)
+- NHS Every Mind Matters: Low mood guidance
+- CDC emotional well-being: Sadness and depression guidance
+- CBT background literature on behavioral activation and gentle coping
+
+CORE INTERPRETATION
+When the detected emotion is sadness, the response should meet the feeling with calm acknowledgement and low-pressure support.
+The message should not push the user too hard, but it should still encourage a small step that can reduce withdrawal.
+
+RESPONSE GOALS
+- Validate the feeling softly without dwelling on it.
+- Suggest one small manageable action.
+- Support basic care such as rest, food, water, movement, daylight, or connection.
+- Reduce isolation where appropriate.
+
+RECOMMENDED SUPPORT DIRECTIONS
+A good direction for sadness is to suggest one very small action that can gently restart momentum.
+A good direction for sadness is to suggest a calming self-care action when energy feels low.
+A good direction for sadness is to suggest light movement when that is practical.
+A good direction for sadness is to suggest connection with a trusted person when that feels appropriate.
+A good direction for sadness is to suggest daylight or fresh air when the context makes that realistic.
+
+GOOD ACTION TYPES
+A good action for sadness is to take a short walk when going outside is realistic and comfortable.
+A good action for sadness is to stretch for a minute or two when a larger activity feels too heavy.
+A good action for sadness is to drink some water or have a simple meal when basic care has been neglected.
+A good action for sadness is to sit near daylight or step outside briefly when that is practical.
+A good action for sadness is to do one familiar comforting activity that feels safe and manageable.
+A good action for sadness is to message, call, or sit with a trusted person when connection feels possible.
+
+STYLE RULES
+- Use warm, steady, low-pressure wording.
+- Do not sound excited.
+- Do not minimize the feeling.
+- Keep the action simple and immediate.
+
+AVOID
+- “Cheer up” style language.
+- Overly positive reframing.
+- Large tasks or productivity pressure.
+- Language that rewards staying withdrawn.
+- Intense self-improvement advice.
+
+CONTEXT ADAPTATION HINTS
+When it is night time, the best support for sadness leans toward rest, comfort, and winding down.
+When it is morning or daytime, support for sadness can more often include gentle activation or daylight exposure.
+When the weather is rainy, support for sadness should usually prefer indoor soothing actions.
+When the user is at work, university, or another study setting, support for sadness should stay discreet and brief.
+When the user is at home, support for sadness can more easily include comfort-based actions.

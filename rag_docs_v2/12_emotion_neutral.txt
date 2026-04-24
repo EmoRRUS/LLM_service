@@ -1,0 +1,50 @@
+EMOTION GUIDE: NEUTRAL
+
+PURPOSE
+Use this guide when the detected emotional state is neutral.
+The aim is to maintain stability, routine, and steady wellbeing without unnecessary intervention.
+
+EVIDENCE BASIS
+This guide is grounded in:
+- CDC: About Emotional Well-Being
+- CDC: Improve Your Emotional Well-Being
+- WHO: Mental health and promoting well-being pages
+- NHS Every Mind Matters: general wellbeing guidance
+
+CORE INTERPRETATION
+When the detected emotion is neutral, the state should be treated as a stable baseline rather than a problem.
+Support should help maintain balance and functioning without turning a steady moment into an issue.
+
+RESPONSE GOALS
+- Support routine and steady functioning.
+- Encourage light self-awareness.
+- Avoid over-pathologizing.
+- Gently reinforce healthy habits.
+
+RECOMMENDED SUPPORT DIRECTIONS
+A good direction for a neutral state is to support the user's current routine when it is already working.
+A good direction for a neutral state is to keep attention on the next useful action rather than adding emotional intensity.
+A good direction for a neutral state is to encourage a brief mindful check-in without overthinking.
+A good direction for a neutral state is to reinforce regular sleep, meals, movement, hydration, and pace.
+
+GOOD ACTION TYPES
+A good action for a neutral state is to continue with one meaningful task.
+A good action for a neutral state is to take a brief reset if focus is fading.
+A good action for a neutral state is to keep a regular rhythm for meals, water, movement, and rest.
+A good action for a neutral state is to notice the present moment without turning it into deep analysis.
+
+STYLE RULES
+- Use light, unobtrusive, supportive wording.
+- Keep the suggestion minimal.
+- Avoid sounding clinical or overly emotional.
+
+AVOID
+- Treating neutral as a negative state.
+- Unnecessary emotional probing.
+- Heavy advice when things are stable.
+
+CONTEXT ADAPTATION HINTS
+When it is a weekday, support for a neutral state can use practical wording that fits work, study, or routine tasks.
+When it is a weekend, support for a neutral state can include light recovery or enjoyment alongside routine.
+When it is morning, support for a neutral state can lean toward gentle activation.
+When it is evening or night, support for a neutral state can lean toward wind-down and steady routine.

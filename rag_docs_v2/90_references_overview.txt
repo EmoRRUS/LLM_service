@@ -1,0 +1,40 @@
+REFERENCES OVERVIEW FOR RAG KNOWLEDGE BASE
+
+These references were used to build the emotion and context guidance files.
+Use them in the project report to justify that the RAG is grounded in official guidance and evidence-based mental wellbeing frameworks.
+
+OFFICIAL / PUBLIC HEALTH SOURCES
+1. World Health Organization. Doing What Matters in Times of Stress: An Illustrated Guide. Geneva: WHO; 2020.
+   Official page: https://www.who.int/publications-detail-redirect/9789240003927
+   WHO repository record: https://iris.who.int/handle/10665/331901
+
+2. National Health Service (NHS). Every Mind Matters.
+   Main page: https://www.nhs.uk/every-mind-matters/
+   Low mood page: https://www.nhs.uk/every-mind-matters/mental-health-issues/low-mood/
+   Anger page: https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/anger/
+
+3. Centers for Disease Control and Prevention (CDC). Emotional Well-Being.
+   About: https://www.cdc.gov/emotional-well-being/about/index.html
+   Improve: https://www.cdc.gov/emotional-well-being/improve-your-emotional-well-being/index.html
+   Managing Difficult Emotions: https://www.cdc.gov/emotional-well-being/managing-difficult-emotions/index.html
+   Sadness and Depression: https://www.cdc.gov/emotional-well-being/managing-difficult-emotions/sadness-depression.html
+
+4. World Health Organization. Mental health.
+   https://www.who.int/health-topics/mental-health
+
+5. World Health Organization. Promoting well-being.
+   https://www.who.int/activities/promoting-well-being
+
+FOUNDATIONAL ACADEMIC SOURCES
+6. Gross JJ. The emerging field of emotion regulation: an integrative review. Psychological Review. 1998;105(2):271-299.
+   DOI: https://doi.org/10.1037/0033-295X.105.2.271
+
+7. Beck AT. Cognitive Therapy and the Emotional Disorders. New York: Penguin / International Universities Press; 1979.
+
+8. Hofmann SG, Asnaani A, Vonk IJJ, Sawyer AT, Fang A. The efficacy of cognitive behavioral therapy: a review of meta-analyses. World Psychiatry. 2012;11(3):427-440.
+   DOI: https://doi.org/10.1002/wps.20002
+
+NOTE FOR REPORTING
+The guides are not copied verbatim from one source.
+They are synthesized from official public-health guidance and established psychological frameworks,
+then constrained to match the project design: short, supportive, non-diagnostic, context-aware nudges.

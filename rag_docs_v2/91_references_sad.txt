@@ -1,0 +1,22 @@
+REFERENCES USED FOR SAD GUIDE
+
+Primary references
+1. World Health Organization. Doing What Matters in Times of Stress: An Illustrated Guide. 2020.
+   Official page: https://www.who.int/publications-detail-redirect/9789240003927
+   Why used: supports practical coping skills, grounding, and doing what matters under stress.
+
+2. NHS Every Mind Matters. Low mood and depression.
+   https://www.nhs.uk/every-mind-matters/mental-health-issues/low-mood/
+   Why used: gives practical, small-step public guidance for improving low mood.
+
+3. CDC. Sadness and Depression | Emotional Well-Being.
+   https://www.cdc.gov/emotional-well-being/managing-difficult-emotions/sadness-depression.html
+   Why used: supports acknowledgement, self-care, rest, exercise, and seeking support.
+
+Foundational background
+4. Beck AT. Cognitive Therapy and the Emotional Disorders. 1979.
+   Why used: provides the CBT basis for gentle activation and unhelpful-thought reduction.
+
+5. Hofmann SG et al. The efficacy of cognitive behavioral therapy: a review of meta-analyses. World Psychiatry. 2012.
+   DOI: https://doi.org/10.1002/wps.20002
+   Why used: supports CBT as an evidence-based framework.

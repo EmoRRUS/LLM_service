@@ -1,0 +1,32 @@
+CONTEXT GUIDE: WEATHER
+
+PURPOSE
+Use this file to adapt suggestions to what is realistic and comfortable in the current weather.
+
+CLEAR / SUNNY
+When the weather is clear or sunny, outdoor suggestions can be appropriate.
+When the weather is clear or sunny, daylight, fresh air, and brief walking may fit well.
+
+CLOUDY
+When the weather is cloudy, either indoor or outdoor suggestions may still work depending on the other context.
+When the weather is cloudy, the adaptation can stay fairly neutral.
+
+RAIN
+When the weather is rainy, support should usually prefer indoor alternatives unless the prompt strongly suggests otherwise.
+When the weather is rainy, good directions include tea, stretching, music, breathing, tidying one small area, or an indoor walk.
+When the weather is rainy, the tone can be a little softer and more comforting.
+
+THUNDERSTORM / STORM
+When there is a thunderstorm or storm, support should prioritize safety and calm indoor actions.
+When there is a thunderstorm or storm, avoid suggesting that the user go outside.
+
+HOT
+When the weather is hot, support should stay gentle.
+When the weather is hot, hydration, shade, rest, slower pacing, and cooling down may fit well.
+
+COLD
+When the weather is cold, support can lean toward warmth, comfort, and feasible movement.
+When the weather is cold, indoor suggestions may fit better if going outside is impractical.
+
+UNKNOWN WEATHER
+When the weather is unknown, avoid weather-specific suggestions and use generally feasible actions.

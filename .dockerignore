@@ -1,0 +1,18 @@
+# .dockerignore
+# Files NOT to copy into the Docker image.
+
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+venv/
+.venv/
+env/
+ENV/
+.git/
+.gitignore
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+context_test_result.txt
