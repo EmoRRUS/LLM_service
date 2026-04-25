@@ -13,16 +13,17 @@
 FROM ollama/ollama:latest
 
 # ── System packages ──────────────────────────────────────────
+# ollama/ollama is based on Rocky Linux — use microdnf, not apt-get
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y \
+RUN microdnf install -y \
     python3 \
     python3-pip \
-    python3-dev \
     curl \
-    && rm -rf /var/lib/apt/lists/*
+    && microdnf clean all
 
 # Make "python" point to python3
-RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip
 
 # ── Working directory ────────────────────────────────────────
 WORKDIR /app
