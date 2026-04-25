@@ -27,10 +27,13 @@ RUN apt-get update && apt-get install -y \
 # Make "python" point to python3
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# ── Install Ollama (Direct Binary) ───────────────────────────
-# Using direct binary download instead of the script to avoid build-time errors
-RUN curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama && \
-    chmod +x /usr/bin/ollama
+# ── Install Ollama (from GitHub releases) ────────────────────
+# Downloads the official tarball from GitHub and extracts the binary
+RUN curl -fsSL https://github.com/ollama/ollama/releases/latest/download/ollama-linux-amd64.tgz \
+    -o /tmp/ollama.tgz && \
+    tar -xzf /tmp/ollama.tgz -C /usr/bin/ ollama && \
+    chmod +x /usr/bin/ollama && \
+    rm /tmp/ollama.tgz
 
 # ── Working directory ────────────────────────────────────────
 WORKDIR /app
