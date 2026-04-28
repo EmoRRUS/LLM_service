@@ -1,23 +1,19 @@
 # ============================================================
 # Bounded Emotion Memory System – GPU Container
 #
-# Base: python:3.11-slim (Ultra-lightweight)
-#   - Solves the "no space left on device" error (image is tiny)
-#   - Pip works perfectly
-#   - CUDA runtime is automatically provided by RunPod host (--gpus all)
+# Base: RunPod's official PyTorch/CUDA image
+#   - Highly optimized for RunPod GPUs (including RTX A5000)
+#   - Pre-installed with Python 3.10 & fully working pip
+#   - Pre-installed with CUDA 12.1 runtime
 # ============================================================
 
 # ── Stage 1: Get Ollama binary + GPU runners ─────────────────
 FROM ollama/ollama:latest AS ollama-src
 
-# ── Stage 2: Python base (clean pip environment) ─────────────
-FROM python:3.11-slim
+# ── Stage 2: RunPod Official GPU Base ─────────────────────────
+FROM runpod/pytorch:2.2.1-py3.10-cuda12.1.1-devel-ubuntu22.04
 
-# System dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Copy Ollama binary and its bundled GPU backend libraries
 COPY --from=ollama-src /bin/ollama /usr/bin/ollama
@@ -29,7 +25,7 @@ COPY --from=ollama-src /lib/ollama /lib/ollama
 WORKDIR /app
 
 # ------------------------------------------------------------
-# Python dependencies (pip works perfectly here)
+# Python dependencies (pip works perfectly out of the box here)
 # ------------------------------------------------------------
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -44,12 +40,6 @@ COPY . .
 # ------------------------------------------------------------
 COPY start.sh /start.sh
 RUN sed -i 's/\r//' /start.sh && chmod +x /start.sh
-
-# ------------------------------------------------------------
-# GPU passthrough env (RunPod host provides CUDA runtime)
-# ------------------------------------------------------------
-ENV NVIDIA_VISIBLE_DEVICES=all
-ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 
 # ------------------------------------------------------------
 # Expose FastAPI port
