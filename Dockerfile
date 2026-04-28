@@ -11,7 +11,7 @@
 FROM ollama/ollama:latest AS ollama-src
 
 # ── Stage 2: Our application image ───────────────────────────
-FROM ubuntu:22.04
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
