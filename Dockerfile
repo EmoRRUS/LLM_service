@@ -1,12 +1,12 @@
 # ============================================================
-# GPU-enabled Ollama base image
+# CUDA BASE (clean + stable)
 # ============================================================
-FROM ollama/ollama:latest
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ------------------------------------------------------------
-# Install system dependencies (VERY IMPORTANT for pip builds)
+# Install system dependencies
 # ------------------------------------------------------------
 RUN apt-get update && apt-get install -y \
     python3 \
@@ -18,27 +18,29 @@ RUN apt-get update && apt-get install -y \
     make \
     curl \
     git \
+    ca-certificates \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
     libxrender-dev \
     libgl1 \
-    libglib2.0-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # ------------------------------------------------------------
-# Python aliases
+# Fix Python + pip
 # ------------------------------------------------------------
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
 
-# ------------------------------------------------------------
-# Upgrade pip properly (IMPORTANT)
-# ------------------------------------------------------------
 RUN python -m pip install --upgrade pip setuptools wheel
 
 # ------------------------------------------------------------
-# Set working directory
+# Install Ollama (OFFICIAL method)
+# ------------------------------------------------------------
+RUN curl -fsSL https://ollama.com/install.sh | sh
+
+# ------------------------------------------------------------
+# Working directory
 # ------------------------------------------------------------
 WORKDIR /app
 
@@ -46,33 +48,29 @@ WORKDIR /app
 # Install Python dependencies
 # ------------------------------------------------------------
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ------------------------------------------------------------
-# Copy project files
+# Copy app
 # ------------------------------------------------------------
 COPY . .
 
 # ------------------------------------------------------------
-# Startup script
+# Start script
 # ------------------------------------------------------------
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 # ------------------------------------------------------------
-# Environment variables for GPU
+# GPU env
 # ------------------------------------------------------------
 ENV OLLAMA_LLM_LIBRARY=cuda
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 
 # ------------------------------------------------------------
-# Expose API port
+# Expose
 # ------------------------------------------------------------
 EXPOSE 8000
 
-# ------------------------------------------------------------
-# Start container
-# ------------------------------------------------------------
 ENTRYPOINT ["/start.sh"]
