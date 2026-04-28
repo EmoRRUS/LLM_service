@@ -1,45 +1,33 @@
 # ============================================================
 # Bounded Emotion Memory System – GPU Container
 #
-# Strategy (multi-stage, targeted copy):
+# KEY INSIGHT (from gist.github.com/usrbinkat/...):
+#   RunPod GPU pods automatically pass "--gpus all" to containers.
+#   This means CUDA runtime libraries are mounted from the HOST.
+#   The Docker image does NOT need to ship CUDA itself.
+#
+# Strategy:
 #   Stage 1: ollama/ollama:latest
-#     → Source of the Ollama binary (/bin/ollama)
-#     → Source of the GPU runner libs (/lib/ollama/)
-#   Stage 2: nvidia/cuda:12.1.1-runtime-ubuntu22.04
-#     → Provides CUDA 12.1 runtime (.so files)
-#     → Full Ubuntu 22.04 apt repos → Python/pip work reliably
-#     → We copy ONLY the ollama binary + runner libs (not all /usr)
-#       so there are no library conflicts
+#     → copy /bin/ollama (binary)
+#     → copy /lib/ollama (GPU runner libs: libggml-cuda.so etc.)
+#   Stage 2: python:3.11-slim
+#     → Python + pip work perfectly here (no apt conflicts)
+#     → libggml-cuda.so links against CUDA libs from RunPod host
 # ============================================================
 
-# ── Stage 1: Ollama source ───────────────────────────────────
+# ── Stage 1: Get Ollama binary + GPU runners ─────────────────
 FROM ollama/ollama:latest AS ollama-src
 
-# ── Stage 2: Main image ───────────────────────────────────────
-FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
+# ── Stage 2: Python base (clean pip environment) ─────────────
+FROM python:3.11-slim
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-# ------------------------------------------------------------
-# System dependencies + Python
-# ------------------------------------------------------------
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
+# System dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Convenience aliases
-RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    ln -sf /usr/bin/pip3 /usr/bin/pip
-
-# ------------------------------------------------------------
-# Copy ONLY the Ollama binary + runner libs (targeted copy)
-# /bin/ollama       → main executable
-# /lib/ollama/      → GPU runner shared libraries (libggml-cuda.so etc.)
-# This avoids the /usr conflict that broke Python packages before.
-# ------------------------------------------------------------
+# Copy Ollama binary and its bundled GPU backend libraries
 COPY --from=ollama-src /bin/ollama /usr/bin/ollama
 COPY --from=ollama-src /lib/ollama /lib/ollama
 
@@ -49,10 +37,10 @@ COPY --from=ollama-src /lib/ollama /lib/ollama
 WORKDIR /app
 
 # ------------------------------------------------------------
-# Python dependencies
+# Python dependencies (pip works perfectly on python:3.11-slim)
 # ------------------------------------------------------------
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # ------------------------------------------------------------
 # Copy app source
@@ -66,7 +54,7 @@ COPY start.sh /start.sh
 RUN sed -i 's/\r//' /start.sh && chmod +x /start.sh
 
 # ------------------------------------------------------------
-# GPU environment
+# GPU passthrough env (RunPod host provides CUDA runtime)
 # ------------------------------------------------------------
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
