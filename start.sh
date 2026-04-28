@@ -55,5 +55,4 @@ cd /app
 exec python3 -m uvicorn api_server:app \
     --host 0.0.0.0 \
     --port 8000 \
-    --log-level info \
-    --no-access-log
+    --log-level info
