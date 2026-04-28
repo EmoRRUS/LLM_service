@@ -1,10 +1,5 @@
 # ============================================================
-# Stage 1: Get FULL Ollama installation
-# ============================================================
-FROM ollama/ollama:latest AS ollama-src
-
-# ============================================================
-# Stage 2: CUDA base (GPU support)
+# Bounded Emotion Memory System – GPU Container
 # ============================================================
 FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
@@ -23,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     make \
     curl \
     git \
+    pciutils \
     ca-certificates \
     libglib2.0-0 \
     libsm6 \
@@ -32,17 +28,17 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ------------------------------------------------------------
+# Install Ollama (Official script guarantees GPU support)
+# ------------------------------------------------------------
+RUN curl -fsSL https://ollama.com/install.sh | sh
+
+# ------------------------------------------------------------
 # Python setup
 # ------------------------------------------------------------
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
 
 RUN python -m pip install --upgrade pip setuptools wheel
-
-# ------------------------------------------------------------
-# 🔥 Copy FULL Ollama installation (NOT just binary)
-# ------------------------------------------------------------
-COPY --from=ollama-src /usr /usr
 
 # ------------------------------------------------------------
 # Working directory
