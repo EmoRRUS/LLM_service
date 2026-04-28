@@ -121,16 +121,7 @@ Task: Write a short, supportive message for this user."""
             "weather": context_data.weather
         }
 
-        # --- DEBUG: Print the full prompt being fed to the LLM ---
-        print("\n" + "="*50)
-        print("DEBUG: FULL PROMPT FED TO LLM")
-        print("="*50)
-        try:
-            formatted_prompt = prompt_template.format(**chain_input)
-            print(formatted_prompt)
-        except Exception as e:
-            print(f"Could not format prompt for debugging: {e}")
-        print("="*50 + "\n")
+
 
         # Invoke the chain
         try:
