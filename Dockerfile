@@ -1,30 +1,25 @@
 # ============================================================
 # Bounded Emotion Memory System – GPU Container
 #
-# WHY ollama/ollama:latest as base?
-#   The official Ollama image already ships with:
-#     - CUDA 12 runtime libraries
-#     - libggml-cuda.so (the GPU backend)
-#     - Properly linked libc/libstdc++
-#   Using it as the base is the ONLY reliable way to get
-#   "inference compute id=cuda" instead of "id=cpu".
+# Base: ollama/ollama:latest
+#   Ships with CUDA 12 runtime + libggml-cuda.so (GPU backend)
+#   This guarantees Ollama uses the GPU instead of CPU.
 # ============================================================
 FROM ollama/ollama:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ------------------------------------------------------------
-# System dependencies + Python
+# System dependencies + Python + pip — all in ONE RUN step
 # ------------------------------------------------------------
 RUN apt-get update && apt-get install -y \
     python3 \
+    python3-pip \
     python3-dev \
     curl \
     ca-certificates \
+    && pip3 install --no-cache-dir --upgrade pip setuptools wheel \
     && rm -rf /var/lib/apt/lists/*
-
-# Install pip via official bootstrap (avoids conflicts with ollama base image)
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3
 
 # Convenience aliases
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
@@ -39,7 +34,7 @@ WORKDIR /app
 # Python dependencies
 # ------------------------------------------------------------
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # ------------------------------------------------------------
 # Copy app source
