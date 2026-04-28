@@ -1,55 +1,38 @@
 # ============================================================
-# Bounded Emotion Memory System – RunPod Container
+# USE FULL OLLAMA IMAGE (includes GPU support)
 # ============================================================
-# Multi-stage build:
-#   Stage 1: Pull Ollama binary out of the official image
-#   Stage 2: Clean Ubuntu 22.04 base with Python + our app
-# This avoids all download URL issues — we just copy the binary.
-# ============================================================
+FROM ollama/ollama:latest
 
-# ── Stage 1: Get the Ollama binary ───────────────────────────
-FROM ollama/ollama:latest AS ollama-src
-
-# ── Stage 2: Our application image ───────────────────────────
-FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
-
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Install Python, pip, and curl (standard Ubuntu — apt-get works here)
+# Install Python
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-dev \
-    curl \
-    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Convenience aliases
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
 
-# ── Copy Ollama binary from official image ───────────────────
-COPY --from=ollama-src /usr/bin/ollama /usr/bin/ollama
-RUN chmod +x /usr/bin/ollama
-
-# ── Working directory ────────────────────────────────────────
+# Working directory
 WORKDIR /app
 
-# ── Python dependencies ──────────────────────────────────────
+# Install Python dependencies
 COPY requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir --upgrade pip && \
-    pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# ── Copy project source ──────────────────────────────────────
+# Copy project files
 COPY . /app
 
-# ── Startup script ───────────────────────────────────────────
+# Startup script
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-# ── Expose API port ──────────────────────────────────────────
+# Expose port
 EXPOSE 8000
 
-# ── Entrypoint ───────────────────────────────────────────────
-ENTRYPOINT ["/start.sh"]
+# Force GPU usage
+ENV OLLAMA_LLM_LIBRARY=cuda
 
+ENTRYPOINT ["/start.sh"]
