@@ -1,12 +1,17 @@
 # ============================================================
-# CUDA BASE (clean + stable)
+# Stage 1: Get FULL Ollama installation
+# ============================================================
+FROM ollama/ollama:latest AS ollama-src
+
+# ============================================================
+# Stage 2: CUDA base (GPU support)
 # ============================================================
 FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ------------------------------------------------------------
-# Install system dependencies
+# System dependencies
 # ------------------------------------------------------------
 RUN apt-get update && apt-get install -y \
     python3 \
@@ -27,7 +32,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ------------------------------------------------------------
-# Fix Python + pip
+# Python setup
 # ------------------------------------------------------------
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
@@ -35,9 +40,9 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 RUN python -m pip install --upgrade pip setuptools wheel
 
 # ------------------------------------------------------------
-# Install Ollama (OFFICIAL method)
+# 🔥 Copy FULL Ollama installation (NOT just binary)
 # ------------------------------------------------------------
-RUN curl -fsSL https://ollama.com/install.sh | sh
+COPY --from=ollama-src /usr /usr
 
 # ------------------------------------------------------------
 # Working directory
@@ -45,7 +50,7 @@ RUN curl -fsSL https://ollama.com/install.sh | sh
 WORKDIR /app
 
 # ------------------------------------------------------------
-# Install Python dependencies
+# Python dependencies
 # ------------------------------------------------------------
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
