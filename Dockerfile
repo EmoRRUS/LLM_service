@@ -1,29 +1,38 @@
 # ============================================================
 # Bounded Emotion Memory System – GPU Container
 #
-# Base: ollama/ollama:latest
-#   Ships with CUDA 12 runtime + libggml-cuda.so (GPU backend)
-#   This guarantees Ollama uses the GPU instead of CPU.
+# Strategy:
+#   Base = nvidia/cuda:12.1.1-runtime-ubuntu22.04
+#     → Full Ubuntu 22.04 apt repos (Python works reliably)
+#     → CUDA 12.1 runtime libraries already present
+#   Ollama = installed via official install.sh
+#     → Script detects the CUDA libs and installs the GPU backend
+#     → Produces "inference compute id=cuda" at runtime
 # ============================================================
-FROM ollama/ollama:latest
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ------------------------------------------------------------
-# System dependencies + Python + pip — all in ONE RUN step
+# System dependencies + Python
 # ------------------------------------------------------------
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
-    python3-dev \
     curl \
     ca-certificates \
-    && pip3 install --no-cache-dir --upgrade pip setuptools wheel \
     && rm -rf /var/lib/apt/lists/*
 
 # Convenience aliases
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
+
+# ------------------------------------------------------------
+# Install Ollama via official script
+# The script detects CUDA 12.1 libs from the base image and
+# installs the GPU-enabled Ollama binary automatically.
+# ------------------------------------------------------------
+RUN curl -fsSL https://ollama.com/install.sh | sh
 
 # ------------------------------------------------------------
 # Working directory
