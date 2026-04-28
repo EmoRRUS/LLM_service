@@ -1,40 +1,30 @@
 # ============================================================
 # Bounded Emotion Memory System – GPU Container
+#
+# WHY ollama/ollama:latest as base?
+#   The official Ollama image already ships with:
+#     - CUDA 12 runtime libraries
+#     - libggml-cuda.so (the GPU backend)
+#     - Properly linked libc/libstdc++
+#   Using it as the base is the ONLY reliable way to get
+#   "inference compute id=cuda" instead of "id=cpu".
 # ============================================================
-FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
+FROM ollama/ollama:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ------------------------------------------------------------
-# System dependencies
+# System dependencies + Python
 # ------------------------------------------------------------
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-dev \
-    build-essential \
-    gcc \
-    g++ \
-    make \
     curl \
-    git \
-    pciutils \
     ca-certificates \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libgl1 \
     && rm -rf /var/lib/apt/lists/*
 
-# ------------------------------------------------------------
-# Install Ollama (Official script guarantees GPU support)
-# ------------------------------------------------------------
-RUN curl -fsSL https://ollama.com/install.sh | sh
-
-# ------------------------------------------------------------
-# Python setup
-# ------------------------------------------------------------
+# Convenience aliases
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
 
@@ -52,25 +42,24 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ------------------------------------------------------------
-# Copy app
+# Copy app source
 # ------------------------------------------------------------
 COPY . .
 
 # ------------------------------------------------------------
-# Start script
+# Start script (strip Windows CRLF line endings)
 # ------------------------------------------------------------
 COPY start.sh /start.sh
 RUN sed -i 's/\r//' /start.sh && chmod +x /start.sh
 
 # ------------------------------------------------------------
-# GPU env
+# GPU environment
 # ------------------------------------------------------------
-ENV OLLAMA_LLM_LIBRARY=cuda
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 
 # ------------------------------------------------------------
-# Expose
+# Expose FastAPI port
 # ------------------------------------------------------------
 EXPOSE 8000
 

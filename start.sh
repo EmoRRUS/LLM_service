@@ -6,16 +6,14 @@ echo "  Bounded Emotion Memory – RunPod Container"
 echo "=============================================="
 
 # ------------------------------------------------------------
-# 0. FORCE GPU USAGE (CRITICAL)
+# 0. GPU Environment
 # ------------------------------------------------------------
-export OLLAMA_LLM_LIBRARY=cuda
 export NVIDIA_VISIBLE_DEVICES=all
 
 echo "[0/4] GPU Environment:"
-echo "      OLLAMA_LLM_LIBRARY=$OLLAMA_LLM_LIBRARY"
 echo "      NVIDIA_VISIBLE_DEVICES=$NVIDIA_VISIBLE_DEVICES"
 
-# Optional: show GPU
+# Show GPU info
 nvidia-smi || echo "WARNING: nvidia-smi not available"
 
 # ------------------------------------------------------------
