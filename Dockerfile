@@ -18,17 +18,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 # ------------------------------------------------------------
 RUN apt-get update && apt-get install -y \
     python3 \
-    python3-pip \
     python3-dev \
     curl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+# Install pip via official bootstrap (avoids conflicts with ollama base image)
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3
+
 # Convenience aliases
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
-
-RUN python -m pip install --upgrade pip setuptools wheel
 
 # ------------------------------------------------------------
 # Working directory
