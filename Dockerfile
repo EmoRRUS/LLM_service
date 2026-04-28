@@ -1,14 +1,21 @@
 # ============================================================
 # Bounded Emotion Memory System – GPU Container
 #
-# Strategy:
-#   Base = nvidia/cuda:12.1.1-runtime-ubuntu22.04
-#     → Full Ubuntu 22.04 apt repos (Python works reliably)
-#     → CUDA 12.1 runtime libraries already present
-#   Ollama = installed via official install.sh
-#     → Script detects the CUDA libs and installs the GPU backend
-#     → Produces "inference compute id=cuda" at runtime
+# Strategy (multi-stage, targeted copy):
+#   Stage 1: ollama/ollama:latest
+#     → Source of the Ollama binary (/bin/ollama)
+#     → Source of the GPU runner libs (/lib/ollama/)
+#   Stage 2: nvidia/cuda:12.1.1-runtime-ubuntu22.04
+#     → Provides CUDA 12.1 runtime (.so files)
+#     → Full Ubuntu 22.04 apt repos → Python/pip work reliably
+#     → We copy ONLY the ollama binary + runner libs (not all /usr)
+#       so there are no library conflicts
 # ============================================================
+
+# ── Stage 1: Ollama source ───────────────────────────────────
+FROM ollama/ollama:latest AS ollama-src
+
+# ── Stage 2: Main image ───────────────────────────────────────
 FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -28,11 +35,13 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
 
 # ------------------------------------------------------------
-# Install Ollama via official script
-# The script detects CUDA 12.1 libs from the base image and
-# installs the GPU-enabled Ollama binary automatically.
+# Copy ONLY the Ollama binary + runner libs (targeted copy)
+# /bin/ollama       → main executable
+# /lib/ollama/      → GPU runner shared libraries (libggml-cuda.so etc.)
+# This avoids the /usr conflict that broke Python packages before.
 # ------------------------------------------------------------
-RUN curl -fsSL https://ollama.com/install.sh | sh
+COPY --from=ollama-src /bin/ollama /usr/bin/ollama
+COPY --from=ollama-src /lib/ollama /lib/ollama
 
 # ------------------------------------------------------------
 # Working directory
