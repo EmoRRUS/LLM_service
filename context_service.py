@@ -47,13 +47,26 @@ class ContextService:
             timestamp: Optional timestamp (defaults to now)
             
         Returns:
-            Tuple of (time_of_day, is_weekday)
+            Tuple of (time_of_day_human_readable, is_weekday)
         """
         if timestamp is None:
             timestamp = datetime.now()
         
-        # Return formatted date/time string and weekday status
-        time_str = timestamp.strftime("%Y-%m-%d %H:%M:%S")
+        # Determine time-of-day period label
+        hour = timestamp.hour
+        if 5 <= hour < 12:
+            period = "Morning"
+        elif 12 <= hour < 17:
+            period = "Afternoon"
+        elif 17 <= hour < 21:
+            period = "Evening"
+        elif 21 <= hour < 24:
+            period = "Night"
+        else:  # 0–4
+            period = "Midnight"
+
+        # Human-readable format: "Tuesday, 29 April 2026, 08:11 AM (Morning)"
+        time_str = timestamp.strftime(f"%A, %d %B %Y, %I:%M %p ({period})")
         
         # Determine if weekday (Monday=0, Sunday=6)
         is_weekday = timestamp.weekday() < 5

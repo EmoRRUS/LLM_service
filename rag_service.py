@@ -167,7 +167,7 @@ class RAGService:
         if time_section:
             parts.append("\n=== TIME OF DAY CONTEXT ===")
             parts.append(time_section.strip())
-            loaded.append(f"time:{time_of_day[:10]}")
+            loaded.append(f"time:{time_of_day}")
 
         weather_section = self._get_weather_section(weather)
         if weather_section:
@@ -233,21 +233,31 @@ class RAGService:
 
     def _get_time_section(self, time_of_day: str) -> str:
         """Extract the relevant time-of-day section from the context doc."""
-        try:
-            # Parse the timestamp string: "2026-03-25 08:30:00"
-            dt = datetime.strptime(time_of_day, "%Y-%m-%d %H:%M:%S")
-            hour = dt.hour
-        except Exception:
-            return self._extract_section("20_context_time_of_day.txt", "MORNING")
+        # The time_of_day string now embeds the period in parentheses,
+        # e.g. "Tuesday, 29 April 2026, 08:11 AM (Morning)"
+        time_lower = time_of_day.lower()
 
-        if 5 <= hour < 12:
+        if "(morning)" in time_lower:
             key = "morning"
-        elif 12 <= hour < 17:
+        elif "(afternoon)" in time_lower:
             key = "afternoon"
-        elif 17 <= hour < 21:
+        elif "(evening)" in time_lower:
             key = "evening"
-        else:
+        elif "(night)" in time_lower:
             key = "night"
+        elif "(midnight)" in time_lower:
+            key = "night"  # treat midnight as night section
+        else:
+            # Fallback: derive from current hour
+            hour = datetime.now().hour
+            if 5 <= hour < 12:
+                key = "morning"
+            elif 12 <= hour < 17:
+                key = "afternoon"
+            elif 17 <= hour < 21:
+                key = "evening"
+            else:
+                key = "night"
 
         section_header = _TIME_SECTION_MAP.get(key, "MORNING")
         return self._extract_section("20_context_time_of_day.txt", section_header)
