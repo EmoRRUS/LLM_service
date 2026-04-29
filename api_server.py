@@ -217,6 +217,71 @@ def process_emotion(req: EmotionRequest):
 
 
 # ---------------------------------------------------------------------------
+# Demo endpoint — always generates, bypasses state machine entirely
+# ---------------------------------------------------------------------------
+
+class DemoFeedbackRequest(BaseModel):
+    """
+    Payload for the Demo tab's manual feedback generation.
+
+    All four fields are required — they come directly from the user's
+    selections in the app UI. No GPS, no weather API, no state machine.
+    """
+    emotion:    str   # "neutral" | "sad" | "happy" | "fear"
+    location:   str   # e.g. "home", "outside", "university"
+    weather:    str   # e.g. "clear", "clouds", "rain"
+    time_of_day: str  # Human-readable, e.g. "Wednesday, 29 April 2026, 09:00 AM (Morning)"
+    weekday:    bool  # True = weekday, False = weekend
+
+
+@app.post("/demo-feedback", response_model=FeedbackOut, tags=["Demo"])
+def demo_feedback(req: DemoFeedbackRequest):
+    """
+    Demo endpoint — always generates an LLM response immediately.
+
+    Accepts manual user selections (emotion, location, weather, time_of_day)
+    and produces feedback unconditionally — no state machine, no GPS API,
+    no weather API. Used exclusively by the Demo tab in the app.
+
+    The existing /process-emotion pipeline is NOT affected.
+    """
+    try:
+        emotion = normalize_emotion(req.emotion)
+
+        # Build context directly from the manually supplied values
+        context = ContextData(
+            location=req.location,
+            semantic_location=req.location,
+            time_of_day=req.time_of_day,
+            weather=req.weather,
+            weekday=req.weekday,
+        )
+
+        # Build a minimal prompt_context dict that mirrors what ContextEngine
+        # would normally produce — duration is 0 since this is a one-shot demo.
+        prompt_context = {
+            "current_emotion":     emotion,
+            "duration_minutes":    0,
+            "include_previous":    False,
+            "previous_emotion":    None,
+            "minutes_since_change": 0,
+        }
+
+        # Call the LLM directly — skip the state machine entirely
+        response = system.llm.generate_feedback(prompt_context, context)
+
+        return FeedbackOut(
+            generated=True,
+            feedback=response.message,
+            emotion_context=f"{emotion} (demo)",
+            normalised_emotion=emotion,
+        )
+
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
+
+
+# ---------------------------------------------------------------------------
 # Dev entrypoint (not used in Docker — Docker uses start.sh + uvicorn directly)
 # ---------------------------------------------------------------------------
 
