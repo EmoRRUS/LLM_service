@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 class ContextData(BaseModel):
     """Context information from sensors/device."""
     location: str = Field(..., description="Full address: street, city, country")
+    semantic_location: str = Field("unknown", description="Semantic location mapping (e.g. home, park) for RAG")
     time_of_day: str = Field(..., description="Formatted timestamp string")
     weekday: bool = Field(..., description="True if weekday, False if weekend")
     weather: str = Field(..., description="Weather condition: sunny, cloudy, rainy, etc.")

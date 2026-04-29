@@ -90,7 +90,7 @@ Task: Write a short, supportive message for this user."""
         # --- RAG: retrieve and assemble system prompt from knowledge base ---
         rag_system_prompt = self.rag.build_system_prompt(
             emotion=emotion_context["current_emotion"],
-            location=context_data.location,
+            location=context_data.semantic_location,
             time_of_day=context_data.time_of_day,
             weather=context_data.weather,
             is_weekday=context_data.weekday,

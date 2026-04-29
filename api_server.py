@@ -195,6 +195,7 @@ def process_emotion(req: EmotionRequest):
 
             context = ContextData(
                 location=req.location or "unknown",
+                semantic_location=req.location or "unknown",
                 time_of_day=req.time_of_day or now.strftime("%Y-%m-%d %H:%M:%S"),
                 weather=req.weather or "unknown",
                 weekday=is_weekday,

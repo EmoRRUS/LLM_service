@@ -60,24 +60,12 @@ class ContextService:
         
         return time_str, is_weekday
     
-    def get_semantic_location(self, latitude: float, longitude: float) -> str:
+    def get_semantic_location(self, latitude: float, longitude: float) -> Tuple[str, str]:
         """
-        Convert GPS coordinates to a RAG-compatible semantic location label.
-
-        Uses Nominatim reverse geocoding to get the address, then derives a
-        semantic category keyword (home / work / university / outside / unknown)
-        that the RAG _get_location_section() keyword scanner can actually match.
-
-        The raw display_name is intentionally NOT returned here because the RAG
-        scanner looks for keywords like "home", "work", "university" — not street
-        addresses.  The LLM receives the raw address via the user prompt only.
-
-        Args:
-            latitude: GPS latitude
-            longitude: GPS longitude
+        Convert GPS coordinates to a RAG-compatible semantic location label and raw address.
 
         Returns:
-            Semantic location keyword string for RAG (e.g. "outside", "unknown")
+            Tuple of (semantic_location, raw_address)
         """
         try:
             headers = {'User-Agent': 'FYP_Emotion_Companion/1.0 (student_project)'}
@@ -101,6 +89,7 @@ class ContextService:
             place_type = data.get("type", "").lower()
             category   = data.get("category", "").lower()
             address    = data.get("address", {})
+            display = data.get("display_name", f"({latitude}, {longitude})")
             
             # Keys that suggest the user is at a place of study/work
             study_types = {"university", "college", "school", "hospital",
@@ -109,23 +98,22 @@ class ContextService:
                              "garden", "recreation_ground", "pitch"}
             
             if place_type in study_types or category in study_types:
-                return "university"
+                return "university", display
             if place_type in outdoor_types or category in outdoor_types:
-                return "park"
+                return "park", display
             if place_type in {"residential", "house", "apartments"}:
-                return "home"
+                return "home", display
             if category in {"highway", "railway", "public_transport"}:
-                return "commuting"
+                return "commuting", display
             
             # Fall back to the suburb/city name for the LLM but return
             # "outside" so the RAG at least loads the public-space context.
-            display = data.get("display_name", f"({latitude}, {longitude})")
             print(f"[ContextService] location type='{place_type}' → defaulting to 'outside'. Address: {display}")
-            return "outside"
+            return "outside", display
 
         except Exception as e:
             print(f"[ContextService] Warning: Could not fetch address: {e}")
-            return "unknown"
+            return "unknown", f"({latitude}, {longitude})"
     
     def get_weather(self, latitude: float, longitude: float) -> str:
         """
@@ -190,14 +178,15 @@ class ContextService:
         # Get time context
         time_of_day, is_weekday = self.get_time_context(timestamp)
         
-        # Get semantic location
-        location = self.get_semantic_location(latitude, longitude)
+        # Get semantic and raw location
+        semantic_location, raw_address = self.get_semantic_location(latitude, longitude)
         
         # Get weather
         weather = self.get_weather(latitude, longitude)
         
         return ContextData(
-            location=location,
+            location=raw_address,
+            semantic_location=semantic_location,
             time_of_day=time_of_day,
             weekday=is_weekday,
             weather=weather,
