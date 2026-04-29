@@ -34,7 +34,7 @@ _EMOTION_NORMALIZER = {
     "neutral":    "neutral",
     "sadness":    "sad",
     "enthusiasm": "happy",
-    "fear":       "fear",
+    "fear":       "anger",    # Temporarily mapped to anger
     # Pass-through for anything already in canonical form
     "sad":        "sad",
     "happy":      "happy",
