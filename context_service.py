@@ -164,25 +164,43 @@ class ContextService:
     ) -> ContextData:
         """
         Build complete context data from GPS coordinates.
-        
-        This is the main method called by the system.
-        
-        Args:
-            latitude: GPS latitude from mobile device
-            longitude: GPS longitude from mobile device
-            timestamp: Optional timestamp (defaults to now)
-            
-        Returns:
-            Complete ContextData object
         """
+        import time
+        import concurrent.futures
+        
         # Get time context
         time_of_day, is_weekday = self.get_time_context(timestamp)
         
-        # Get semantic and raw location
-        semantic_location, raw_address = self.get_semantic_location(latitude, longitude)
+        # Initialize cache if it doesn't exist
+        if not hasattr(self, '_cache'):
+            self._cache = {}
+            
+        # Round to 3 decimal places (approx 110 meters accuracy) to reuse cache for same area
+        cache_key = (round(latitude, 3), round(longitude, 3))
+        now = time.time()
         
-        # Get weather
-        weather = self.get_weather(latitude, longitude)
+        # Check if we have cached data less than 10 minutes old (600 seconds)
+        if cache_key in self._cache and (now - self._cache[cache_key]['time']) < 600:
+            print(f"[ContextService] Fast track! Using cached APIs for {cache_key}")
+            semantic_location = self._cache[cache_key]['semantic_location']
+            raw_address = self._cache[cache_key]['raw_address']
+            weather = self._cache[cache_key]['weather']
+        else:
+            # Not cached: fetch Location and Weather CONCURRENTLY to save time
+            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                future_loc = executor.submit(self.get_semantic_location, latitude, longitude)
+                future_weather = executor.submit(self.get_weather, latitude, longitude)
+                
+                semantic_location, raw_address = future_loc.result()
+                weather = future_weather.result()
+            
+            # Save to cache
+            self._cache[cache_key] = {
+                'time': now,
+                'semantic_location': semantic_location,
+                'raw_address': raw_address,
+                'weather': weather
+            }
         
         return ContextData(
             location=raw_address,
