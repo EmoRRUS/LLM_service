@@ -144,41 +144,56 @@ class RAGService:
             Complete system prompt string with all retrieved content.
         """
         parts = []
+        loaded = []   # track what was loaded for the log line
 
         # 1. Always-present guardrails
         guardrails = self._get_file("00_system_guardrails.txt")
         if guardrails:
             parts.append("=== SYSTEM GUIDELINES ===")
             parts.append(guardrails.strip())
+            loaded.append("guardrails")
 
         # 2. Emotion-specific guide
         emotion_content = self._get_emotion_doc(emotion)
         if emotion_content:
             parts.append(f"\n=== GUIDANCE FOR EMOTION: {emotion.upper()} ===")
             parts.append(emotion_content.strip())
+            loaded.append(f"emotion:{emotion}")
+        else:
+            print(f"[RAG] WARNING: no emotion doc for '{emotion}'")
 
-        # 3. Context-specific guidance (time, weather, location, day type)
+        # 3. Context-specific guidance
         time_section = self._get_time_section(time_of_day)
         if time_section:
             parts.append("\n=== TIME OF DAY CONTEXT ===")
             parts.append(time_section.strip())
+            loaded.append(f"time:{time_of_day[:10]}")
 
         weather_section = self._get_weather_section(weather)
         if weather_section:
             parts.append("\n=== WEATHER CONTEXT ===")
             parts.append(weather_section.strip())
+            loaded.append(f"weather:{weather}")
+        else:
+            print(f"[RAG] WARNING: no weather section for '{weather}'")
 
         location_section = self._get_location_section(location)
         if location_section:
             parts.append("\n=== LOCATION CONTEXT ===")
             parts.append(location_section.strip())
+            loaded.append(f"location:{location}")
+        else:
+            print(f"[RAG] WARNING: no location section for '{location}'")
 
         day_section = self._get_day_section(is_weekday)
         if day_section:
             parts.append("\n=== DAY TYPE CONTEXT ===")
             parts.append(day_section.strip())
+            loaded.append("weekday" if is_weekday else "weekend")
 
-        return "\n\n".join(parts)
+        prompt = "\n\n".join(parts)
+        print(f"[RAG] Built system prompt ({len(prompt)} chars) | sections: {', '.join(loaded)}")
+        return prompt
 
     # ------------------------------------------------------------------
     # Internal helpers — document loading
@@ -254,7 +269,8 @@ class RAGService:
         for keyword, header in _LOCATION_SECTION_MAP.items():
             if keyword in location_lower:
                 return self._extract_section("22_context_location.txt", header)
-        # Default: unknown location
+        
+        # Default: unknown location. 
         return self._extract_section("22_context_location.txt", "UNKNOWN LOCATION")
 
     def _get_day_section(self, is_weekday: bool) -> str:
