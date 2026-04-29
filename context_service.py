@@ -44,13 +44,16 @@ class ContextService:
         Get time of day and weekday from timestamp.
         
         Args:
-            timestamp: Optional timestamp (defaults to now)
+            timestamp: Optional timestamp (defaults to now in UTC+5:30)
             
         Returns:
             Tuple of (time_of_day_human_readable, is_weekday)
         """
         if timestamp is None:
-            timestamp = datetime.now()
+            # Enforce Sri Lanka time (UTC+5:30) regardless of server timezone
+            from datetime import timezone, timedelta
+            sl_tz = timezone(timedelta(hours=5, minutes=30))
+            timestamp = datetime.now(sl_tz)
         
         # Determine time-of-day period label
         hour = timestamp.hour
