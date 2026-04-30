@@ -33,9 +33,9 @@ def test_llm_responses():
             )
         },
         {
-            "name": "Happy at Home (Sunny Weekend)",
+            "name": "enthusiasm at Home (Sunny Weekend)",
             "emotion_context": {
-                "current_emotion": "happy",
+                "current_emotion": "enthusiasm",
                 "duration_minutes": 20,
                 "include_previous": False
             },
@@ -52,7 +52,7 @@ def test_llm_responses():
                 "current_emotion": "sad",
                 "duration_minutes": 30,
                 "include_previous": True,
-                "previous_emotion": "happy",
+                "previous_emotion": "enthusiasm",
                 "minutes_since_change": 30
             },
             "context": ContextData(

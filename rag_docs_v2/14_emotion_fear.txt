@@ -1,0 +1,74 @@
+EMOTION GUIDE: FEAR
+
+PURPOSE
+Use this guide when the detected emotional state is fear.
+The aim is to reduce threat arousal, support grounding in the present moment, and encourage one safe and manageable coping action.
+
+EVIDENCE BASIS
+This guide is grounded in:
+- WHO: Doing What Matters in Times of Stress (2020)
+- NHS: Get help with anxiety, fear or panic
+- NHS: Breathing exercises for stress
+- NHS inform: Grounding exercises
+- CDC: Managing Difficult Emotions
+- CDC: Improve Your Emotional Well-Being
+- APA: Anxiety topic guidance
+- Gross (1998): emotion regulation framework
+- CBT background literature on identifying and challenging fears
+
+CORE INTERPRETATION
+When the detected emotion is fear, the response should assume that the user may be experiencing threat sensitivity, physical tension, worry, uncertainty, or a sense of being unsafe.
+The first priority is to help the user feel more grounded and steady before suggesting reflection, problem solving, or action.
+The response should not diagnose anxiety or panic, and it should not amplify the perceived threat.
+
+RESPONSE GOALS
+- Help the user orient to the present moment.
+- Reduce physical arousal through slow breathing, grounding, or relaxation.
+- Support a sense of safety using simple and immediate actions.
+- Encourage practical next steps only after the user has calmed.
+- Keep the message short and non-clinical.
+
+RECOMMENDED SUPPORT DIRECTIONS
+A good direction for fear is to help the user notice the present environment instead of staying focused only on the feared thought.
+A good direction for fear is to suggest slow, gentle breathing so the body can begin to settle.
+A good direction for fear is to encourage grounding through the senses when the fear feels overwhelming.
+A good direction for fear is to suggest moving to a safer, calmer, or more comfortable place when that is realistic.
+A good direction for fear is to encourage one small practical step rather than asking the user to solve the whole situation immediately.
+A good direction for fear is to gently reduce catastrophic thinking without arguing with the user or dismissing the feeling.
+A good direction for fear is to encourage contacting a trusted person if the user appears overwhelmed or alone.
+
+GOOD ACTION TYPES
+A good action for fear is to take a slow breath in and a longer breath out while relaxing the shoulders.
+A good action for fear is to name five things the user can see around them to reconnect with the present moment.
+A good action for fear is to place both feet on the ground and notice the contact with the floor.
+A good action for fear is to step into a calmer or safer space if the current setting feels too intense.
+A good action for fear is to loosen tense muscles in the jaw, hands, and shoulders while breathing slowly.
+A good action for fear is to write down the specific worry and one small next step when the user is calm enough.
+A good action for fear is to reach out to a trusted person when the fear feels difficult to manage alone.
+
+STYLE RULES
+- Use steady, reassuring, non-dramatic wording.
+- Sound calm and practical rather than overly emotional.
+- Validate the feeling without confirming that the feared outcome is true.
+- Prefer present-moment language such as "right now" and "one small step".
+- Keep the response short and easy to follow.
+
+AVOID
+- Do not say "there is nothing to be afraid of," because that can feel dismissive.
+- Do not intensify the fear by focusing on danger or worst-case outcomes.
+- Do not give complex reasoning while the user is highly fearful.
+- Do not encourage avoidance as the main long-term strategy.
+- Do not push exposure-like advice in a brief nudge system.
+- Do not diagnose anxiety, panic, trauma, phobia, or any clinical condition.
+- Do not suggest risky actions or unsafe escape behavior.
+
+CONTEXT ADAPTATION HINTS
+When it is night time, support for fear should lean toward calm, low-stimulation grounding, comfort, and preparing for rest.
+When it is morning or daytime, support for fear can include grounding first and then one small practical step for the day.
+When the user is at home, support for fear can suggest a quiet space, slow breathing, or a comforting routine.
+When the user is at work, university, or another study setting, support for fear should suggest discreet grounding such as relaxed breathing, feet on the floor, or a short break.
+When the user is outside or commuting, support for fear should prioritize safety, present-moment awareness, and moving to a calmer place if needed.
+When the weather is stormy or rainy, support for fear should prefer indoor grounding and reassurance rather than outdoor movement.
+When the weather is hot, support for fear can include hydration, cooling down, and slower breathing when appropriate.
+When it is a weekday, support for fear should stay brief and practical so it does not interrupt responsibilities.
+When it is a weekend, support for fear can allow slightly more time for recovery, connection, journaling, or a calming routine.

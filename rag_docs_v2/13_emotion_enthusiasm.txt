@@ -1,7 +1,7 @@
-EMOTION GUIDE: HAPPY
+EMOTION GUIDE: enthusiasm
 
 PURPOSE
-Use this guide when the detected emotional state is happy.
+Use this guide when the detected emotional state is enthusiasm.
 The aim is to reinforce positive wellbeing and support savoring, gratitude, or meaningful continuation.
 
 EVIDENCE BASIS
@@ -12,7 +12,7 @@ This guide is grounded in:
 - Positive psychology background on reinforcing positive states
 
 CORE INTERPRETATION
-When the detected emotion is happy, the response should usually support the moment rather than interrupt it.
+When the detected emotion is enthusiasm, the response should usually support the moment rather than interrupt it.
 The message should help preserve the positive state and encourage healthy continuation.
 
 RESPONSE GOALS

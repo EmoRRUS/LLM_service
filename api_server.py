@@ -27,19 +27,20 @@ from models import ContextData
 # Emotion label normalizer
 # ---------------------------------------------------------------------------
 # The RunPod EEG inference handler outputs: "neutral", "sadness", "enthusiasm", "fear"
-# Our RAG service and state machine use:    "neutral", "sad",     "happy",       "fear"
+# Our RAG service and state machine use:    "neutral", "sad",     "enthusiasm",       "fear"
 # This map translates the handler's output to our internal canonical labels.
 _EMOTION_NORMALIZER = {
     # Inference handler output → our internal label
     "neutral":    "neutral",
     "sadness":    "sad",
-    "enthusiasm": "happy",
-    "fear":       "anger",    # Temporarily mapped to anger
+    "enthusiasm": "enthusiasm",
+    "fear":       "fear",
     # Pass-through for anything already in canonical form
     "sad":        "sad",
-    "happy":      "happy",
+    "enthusiasm":      "enthusiasm",
     "anger":      "anger",
     "angry":      "anger",
+    "fear":       "fear",
 }
 
 
@@ -90,7 +91,7 @@ class EmotionRequest(BaseModel):
       2. Manual mode → provide location, time_of_day, weather, weekday manually.
 
     The emotion field accepts both inference handler labels ("sadness", "enthusiasm")
-    and canonical labels ("sad", "happy") — both are normalised automatically.
+    and canonical labels ("sad", "enthusiasm") — both are normalised automatically.
     """
     emotion: str                              # e.g. "sadness" | "neutral" | "enthusiasm" | "fear"
 
@@ -172,7 +173,7 @@ def process_emotion(req: EmotionRequest):
     - Send `emotion`, `location`, `time_of_day`, `weather`, `weekday`.
 
     The emotion label is normalised automatically:
-    - `"sadness"` → `"sad"`, `"enthusiasm"` → `"happy"`, `"fear"` → `"fear"`
+    - `"sadness"` → `"sad"`, `"enthusiasm"` → `"enthusiasm"`, `"fear"` → `"fear"`
 
     Returns `generated: false` if the state machine decides no feedback is needed yet
     (e.g. emotion hasn't changed and the periodic interval hasn't elapsed).
@@ -227,7 +228,7 @@ class DemoFeedbackRequest(BaseModel):
     All four fields are required — they come directly from the user's
     selections in the app UI. No GPS, no weather API, no state machine.
     """
-    emotion:    str   # "neutral" | "sad" | "happy" | "fear"
+    emotion:    str   # "neutral" | "sad" | "enthusiasm" | "fear"
     location:   str   # e.g. "home", "outside", "university"
     weather:    str   # e.g. "clear", "clouds", "rain"
     time_of_day: str  # Human-readable, e.g. "Wednesday, 29 April 2026, 09:00 AM (Morning)"

@@ -28,9 +28,9 @@ def simulate_scenario():
     T=20:   anger (same, 10m since last) -> FEEDBACK (periodic)
     T=25:   anger (same) -> No feedback
     T=30:   anger (same, 10m since last) -> FEEDBACK (periodic)
-    T=35:   happy (change) -> FEEDBACK (emotion change)
-    T=40:   happy (same) -> No feedback (only 5m since last)
-    T=45:   happy (same, 10m since last) -> FEEDBACK (periodic)
+    T=35:   enthusiasm (change) -> FEEDBACK (emotion change)
+    T=40:   enthusiasm (same) -> No feedback (only 5m since last)
+    T=45:   enthusiasm (same, 10m since last) -> FEEDBACK (periodic)
     """
     
     print("=" * 80)
@@ -58,7 +58,7 @@ def simulate_scenario():
     # Define simulation timeline
     base_time = datetime.now()
     
-    # Using only strictly supported RAG emotions: neutral, anger, happy, sad
+    # Using only strictly supported RAG emotions: neutral, anger, enthusiasm, sad
     scenarios = [
         (0,  "neutral", colombo_gps["home_area"]),
         (5,  "neutral", colombo_gps["home_area"]),
@@ -67,9 +67,9 @@ def simulate_scenario():
         (20, "anger",   colombo_gps["work_area"]),
         (25, "anger",   colombo_gps["work_area"]),
         (30, "anger",   colombo_gps["work_area"]),
-        (35, "happy",   colombo_gps["park_area"]),
-        (40, "happy",   colombo_gps["park_area"]),
-        (45, "happy",   colombo_gps["park_area"]),
+        (35, "enthusiasm",   colombo_gps["park_area"]),
+        (40, "enthusiasm",   colombo_gps["park_area"]),
+        (45, "enthusiasm",   colombo_gps["park_area"]),
     ]
     
     for minutes_offset, emotion, gps in scenarios:
@@ -114,13 +114,13 @@ def test_temporal_relevance():
     engine = ContextEngine()
     base_time = datetime.now()
     
-    # T=0: Happy
-    engine.update_emotion("happy", base_time)
-    print(f"[T+0] Emotion: happy")
+    # T=0: enthusiasm
+    engine.update_emotion("enthusiasm", base_time)
+    print(f"[T+0] Emotion: enthusiasm")
     
     # T=5: Stressed (change)
     engine.update_emotion("stressed", base_time + timedelta(minutes=5))
-    print(f"[T+5] Emotion: stressed (changed from happy)")
+    print(f"[T+5] Emotion: stressed (changed from enthusiasm)")
     
     # T=10: Check context (previous should be included)
     context_t10 = engine.get_prompt_context(base_time + timedelta(minutes=10))

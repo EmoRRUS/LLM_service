@@ -88,11 +88,11 @@ def test_full_pipeline_with_gps():
     print("\n" + "=" * 80)
     
     # Test with different location
-    print("\n[Scenario 2] User in New York, feeling happy")
+    print("\n[Scenario 2] User in New York, feeling enthusiasm")
     print("-" * 80)
     
     response = system.process_emotion_with_gps(
-        emotion="happy",
+        emotion="enthusiasm",
         latitude=40.7128,
         longitude=-74.0060
     )

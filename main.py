@@ -37,7 +37,7 @@ class FeedbackSystem:
         This is the main method called by external systems when a new emotion is detected.
         
         Args:
-            emotion: The detected emotion label (e.g., "happy", "stressed", "sad")
+            emotion: The detected emotion label (e.g., "enthusiasm", "stressed", "sad")
             context: Current context information
             timestamp: Time of detection (defaults to now)
             

@@ -1,0 +1,45 @@
+REFERENCES USED FOR FEAR GUIDE
+
+Primary official references
+1. NHS. Get help with anxiety, fear or panic.
+   https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/anxiety-fear-panic/
+   Why used: provides official guidance that fear can involve stress hormones and physical symptoms, and that people should not self-diagnose. It supports calm coping and help-seeking when fear is difficult to manage.
+
+2. NHS. Breathing exercises for stress.
+   https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/
+   Why used: supports slow, gentle breathing as a practical calming strategy that can be done in different positions and settings.
+
+3. NHS inform. Grounding exercises.
+   https://www.nhsinform.scot/healthy-living/mental-wellbeing/breathing-and-relaxation-exercises/grounding-exercises/
+   Why used: supports grounding techniques, including sensory grounding, for anxiety and stress when feelings become overwhelming.
+
+4. WHO. Doing What Matters in Times of Stress: An Illustrated Guide. 2020.
+   https://www.who.int/publications-detail-redirect/9789240003927
+   Why used: supports grounding, unhooking from difficult thoughts and feelings, acting on values, and making room for difficult experiences.
+
+5. CDC. Managing Difficult Emotions.
+   https://www.cdc.gov/emotional-well-being/managing-difficult-emotions/index.html
+   Why used: includes fear as a difficult emotion and supports identifying and challenging fears using cognitive-behavioral approaches.
+
+6. CDC. Improve Your Emotional Well-Being.
+   https://www.cdc.gov/emotional-well-being/improve-your-emotional-well-being/index.html
+   Why used: supports managing difficult emotions, healthy stress coping, relaxation techniques, journaling, and asking for support.
+
+Supporting background
+7. American Psychological Association. Anxiety.
+   https://www.apa.org/topics/anxiety
+   Why used: explains anxiety as involving tension, worried thoughts, and physical changes. This supports body-first calming and present-moment grounding for fear-related states.
+
+8. Gross JJ. The emerging field of emotion regulation: an integrative review. Psychological Review. 1998;105(2):271-299.
+   DOI: https://doi.org/10.1037/0033-295X.105.2.271
+   Why used: provides the emotion regulation basis for attention deployment, cognitive change, and response modulation.
+
+9. Beck AT. Cognitive Therapy and the Emotional Disorders. 1979.
+   Why used: provides the CBT basis for identifying and reducing unhelpful fear-related thoughts without validating catastrophic interpretations.
+
+10. Hofmann SG, Asnaani A, Vonk IJJ, Sawyer AT, Fang A. The efficacy of cognitive behavioral therapy: a review of meta-analyses. World Psychiatry. 2012;11(3):427-440.
+   DOI: https://doi.org/10.1002/wps.20002
+   Why used: supports CBT as an evidence-based framework for emotional difficulties, including anxiety-related fear.
+
+NOTE
+The fear guide is designed for short wellbeing nudges, not therapy, diagnosis, exposure treatment, or crisis response. It uses conservative actions such as grounding, slow breathing, calming the body, present-moment orientation, and trusted support.

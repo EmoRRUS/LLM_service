@@ -14,5 +14,5 @@ RECOMMENDED FLOW
 5. Build the final prompt from guardrails + retrieved files + live user state.
 
 WHY THIS MATTERS
-A user query about sadness, anger, happiness, or context may not naturally retrieve the general guardrails file.
+A user query about sadness, anger, happiness, fear, or context may not naturally retrieve the general guardrails file.
 Hardcoding the guardrails into the prompt keeps style, safety, and scope consistent on every response.

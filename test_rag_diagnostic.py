@@ -14,7 +14,7 @@ print(f"  Loaded: {len(g)} chars" if g else "  FAILED: empty")
 
 # Test 2: Emotion docs for all labels the app sends
 print("\n=== TEST 2: Emotion docs ===")
-for label in ["neutral", "sadness", "enthusiasm", "fear", "sad", "happy", "anger"]:
+for label in ["neutral", "sadness", "enthusiasm", "fear", "sad", "enthusiasm", "anger"]:
     result = rag._get_emotion_doc(label)
     status = f"{len(result)} chars" if result else "MISSING !!!"
     print(f"  {label:<14} -> {status}")

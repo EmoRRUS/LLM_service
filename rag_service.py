@@ -26,14 +26,15 @@ _EMOTION_FILE_MAP: Dict[str, str] = {
     "anger":      "11_emotion_anger.txt",
     "angry":      "11_emotion_anger.txt",
     "neutral":    "12_emotion_neutral.txt",
-    "happy":      "13_emotion_happy.txt",
+    "enthusiasm":      "13_emotion_enthusiasm.txt",
+    "fear":       "14_emotion_fear.txt",
 
     # ── Inference handler output labels ──────────────────────────
     # The RunPod EEG inference handler outputs these exact strings.
     # Map them to the correct RAG document.
     "sadness":    "10_emotion_sad.txt",    # handler "sadness"    → sad guide
-    "fear":       "11_emotion_anger.txt",  # handler "fear"       → anger/fear guide
-    "enthusiasm": "13_emotion_happy.txt",  # handler "enthusiasm" → happy guide
+    "fear":       "14_emotion_fear.txt",   # handler "fear"       → fear guide
+    "enthusiasm": "13_emotion_enthusiasm.txt",  # handler "enthusiasm" → enthusiasm guide
 }
 
 
@@ -131,7 +132,7 @@ class RAGService:
         Build the full system prompt for the LLM.
 
         Args:
-            emotion:     Detected emotion label (e.g. "sad", "happy").
+            emotion:     Detected emotion label (e.g. "sad", "enthusiasm").
             location:    Semantic location string from ContextService
                          (e.g. "Mount Lavinia, Colombo, Sri Lanka").
             time_of_day: Formatted timestamp string from ContextService
