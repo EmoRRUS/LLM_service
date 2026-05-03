@@ -30,7 +30,7 @@ class LLMInference:
     - NO diagnosis
     - NO emotional dependency encouragement
     - Calm, supportive, non-judgmental tone
-    - 1-3 sentences maximum
+    - 1-2 sentences maximum
     - Plain text only (no emojis, no markdown)
     """
 
@@ -70,7 +70,7 @@ class LLMInference:
 - Time: {time_of_day}
 - Weather: {weather}
 
-Task: Write a short, supportive message for this user."""
+Task: Write a short, supportive message for this user (maximum 2 sentences). Output ONLY the message itself. Do not include any system notes, guidelines, or meta-commentary."""
 
     def generate_feedback(
         self,

@@ -257,7 +257,7 @@ Prompt + User prompt   on localhost             (cleaned up)
 
 #### System Prompt (RAG-enriched + Safety Constraints)
 The LLM is given strict rules combined with context guidance from `rag_service`:
-- ✅ One short, kind message (2–3 sentences max)
+- ✅ One short, kind message (1–2 sentences max)
 - ✅ Calm, non-judgmental, warm tone
 - ✅ Plain text only (no markdown, no emojis)
 - ❌ No medical advice or diagnosis
