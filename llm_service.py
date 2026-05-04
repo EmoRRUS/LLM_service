@@ -129,6 +129,11 @@ Task: Write a short, supportive message for this user (maximum 2 sentences). Out
 
             # Clean up the message (remove any accidental formatting or quotes)
             message = message.strip().strip('"')
+            
+            # Aggressive cleanup for SLM hallucinations
+            for cutoff_marker in ["---", "###", "System Output:", "System:", "Note:"]:
+                if cutoff_marker in message:
+                    message = message.split(cutoff_marker)[0].strip()
 
             # Create response
             return FeedbackResponse(
