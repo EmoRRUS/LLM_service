@@ -13,6 +13,7 @@ Endpoints:
 """
 
 import os
+import json
 from datetime import datetime
 from typing import Optional
 
@@ -48,6 +49,20 @@ def normalize_emotion(raw: str) -> str:
     """Translate an inference handler emotion label to our internal label."""
     cleaned = raw.lower().strip()
     return _EMOTION_NORMALIZER.get(cleaned, cleaned)
+
+
+def log_response(payload: BaseModel, endpoint: str):
+    """Debug helper to save the JSON response to a file."""
+    os.makedirs("logs", exist_ok=True)
+    log_file = os.path.join("logs", f"{endpoint}_responses.jsonl")
+    
+    log_entry = {
+        "timestamp": datetime.now().isoformat(),
+        "response": payload.model_dump()
+    }
+    
+    with open(log_file, "a", encoding="utf-8") as f:
+        f.write(json.dumps(log_entry) + "\n")
 
 
 # ---------------------------------------------------------------------------
@@ -204,14 +219,17 @@ def process_emotion(req: EmotionRequest):
             response = system.process_emotion_detection(emotion, context)
 
         if response:
-            return FeedbackOut(
+            out = FeedbackOut(
                 generated=True,
                 feedback=response.message,
                 emotion_context=response.emotion_context,
                 normalised_emotion=emotion,
             )
         else:
-            return FeedbackOut(generated=False, normalised_emotion=emotion)
+            out = FeedbackOut(generated=False, normalised_emotion=emotion)
+            
+        log_response(out, "process_emotion")
+        return out
 
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
@@ -271,12 +289,15 @@ def demo_feedback(req: DemoFeedbackRequest):
         # Call the LLM directly — skip the state machine entirely
         response = system.llm.generate_feedback(prompt_context, context)
 
-        return FeedbackOut(
+        out = FeedbackOut(
             generated=True,
             feedback=response.message,
             emotion_context=f"{emotion} (demo)",
             normalised_emotion=emotion,
         )
+        
+        log_response(out, "demo_feedback")
+        return out
 
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
